@@ -1,6 +1,6 @@
 require 'find_address'
 
-Admin::OrdersController.class_eval do
+Spree::Admin::OrdersController.class_eval do
   before_filter :fix_addresses, :only => [:update]
   after_filter :change_user_email , :only => [:update]
   
@@ -12,7 +12,7 @@ Admin::OrdersController.class_eval do
           params[:order][:bill_address_attributes][:city] == "" and 
           params[:order][:bill_address_attributes][:firstname] == "" and 
           params[:order][:bill_address_attributes][:lastname] == "" 
-          if params[:order][:email] == "" and Spree::Config[:dummy_addresses]
+          if params[:order][:email] == "" #TODO and Spree::Config[:dummy_addresses]
             params[:order][:email] = @order.user.email
             puts "Setting to dummy #{@order.user.email}"
             FindAddressHelper.set_dummy(params[:order][:bill_address_attributes] , @order.user.email)
@@ -30,7 +30,7 @@ Admin::OrdersController.class_eval do
   end
 
   def change_user_email
-    if @order.user.anonymous? and Spree::Config[:dummy_addresses]
+    if @order.user.anonymous? #TODO and Spree::Config[:dummy_addresses]
       @order.user.email = params[:order][:email]
       @order.user.save
       #puts "changed anonymous to #{@order.email}"

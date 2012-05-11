@@ -1,7 +1,5 @@
-require 'spree_last_address_hooks'
 
-module SpreeLastAddress
-  class Engine < Rails::Engine
+class SpreeLastAddress < Rails::Engine
 
     config.autoload_paths += %W(#{config.root}/lib)
 
@@ -12,5 +10,4 @@ module SpreeLastAddress
     end
 
     config.to_prepare &method(:activate).to_proc
-  end
 end
