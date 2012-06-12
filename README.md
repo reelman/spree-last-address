@@ -19,4 +19,4 @@ No assets, no migrations, not rake tasks.
 PS: I pulled best commits from forked reps. Thanks to kenscotthlebek,  TylerRick
 
 
-Copyright (c) 2010 [Torsten Rüger], released under the New BSD License
+Copyright (c) 2010 [Torsten Ruger], released under the New BSD License
