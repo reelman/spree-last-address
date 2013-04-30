@@ -6,7 +6,7 @@ Spree::CheckoutController.class_eval do
 
   def before_address
     #puts "BEFORE ADDRESS2 called user= #{@order}  #{@order.email}"
-    @order.bill_address , @order.ship_address = FindAddressHelper.find_address(@order.email)
+    @order.bill_address , @order.ship_address = FindAddressHelper.find_address(@order.email) unless @order.user.anonymous?
     # in case none found
     @order.bill_address ||= current_user.bill_address if current_user
     @order.ship_address ||= current_user.ship_address if current_user
